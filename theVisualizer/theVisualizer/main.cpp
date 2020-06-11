@@ -30,6 +30,12 @@ int main(void)
 	// Make this windows context the current context
 	glfwMakeContextCurrent(window);
 
+	float vertices[] = {
+		0.0, 0.5, 0.0,
+		-0.5, -0.5, 0.0,
+		0.5, -0.5, 0.0
+	};
+
 	// Do as long as the window isn't closed
 	while (!glfwWindowShouldClose(window)) {
 		// Clear the screen at the beginning of every loop
