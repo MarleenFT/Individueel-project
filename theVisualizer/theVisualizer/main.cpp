@@ -5,9 +5,6 @@
 
 #include "Tutorial1.h"
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
-
 int main(void)
 {
 	Tutorial1 tut1;
@@ -48,7 +45,15 @@ int main(void)
 		// Clear the screen at the beginning of every loop
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		tut1.visualizeSquare();
+		//--------------------------------Add draw code here--------------------------------------------
+		tut1.drawPoint(80, SCREEN_HEIGHT / 2, 10, true);
+		tut1.drawPoint(90, SCREEN_HEIGHT / 2, 10, false);
+		tut1.drawPoint(100, SCREEN_HEIGHT / 2, 10, true);
+		tut1.drawPoint(110, SCREEN_HEIGHT / 2, 10, false);
+		tut1.drawPoint(120, SCREEN_HEIGHT / 2, 10, true);
+		tut1.drawPoint(130, SCREEN_HEIGHT / 2, 10, false);
+		tut1.drawPoint(140, SCREEN_HEIGHT / 2, 10, true);
+		//----------------------------------------------------------------------------------------------
 
 		// Swap the windows front and back buffers
 		glfwSwapBuffers(window);
