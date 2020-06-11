@@ -17,6 +17,8 @@ public:
 
 	void drawPoint(int x, int y, int size, bool smooth);
 
+	void drawCube(float xPos, float yPos, float zPos, float length, float colors[]);
+
 private:
 	// A triangle
 	float verticesTriangle[9] =

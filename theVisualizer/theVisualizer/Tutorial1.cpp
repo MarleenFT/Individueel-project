@@ -46,3 +46,51 @@ void Tutorial1::drawPoint(int x, int y, int size, bool smooth)
 	}
 }
 
+void Tutorial1::drawCube(float xPos, float yPos, float zPos, float length, float colors[])
+{
+	float halfLength = length / 2;
+	float Cube[72] =
+	{
+		//front
+		xPos - halfLength, yPos + halfLength, zPos + halfLength,	//top left
+		xPos + halfLength, yPos + halfLength, zPos + halfLength,	//top right
+		xPos + halfLength, yPos - halfLength, zPos + halfLength,	//bottom right
+		xPos - halfLength, yPos - halfLength, zPos + halfLength,	//bottom left
+		//back
+		xPos - halfLength, yPos + halfLength, zPos - halfLength,
+		xPos + halfLength, yPos + halfLength, zPos - halfLength,
+		xPos + halfLength, yPos - halfLength, zPos - halfLength,
+		xPos - halfLength, yPos - halfLength, zPos - halfLength,
+		//left
+		xPos - halfLength, yPos + halfLength, zPos + halfLength,
+		xPos - halfLength, yPos + halfLength, zPos - halfLength,
+		xPos - halfLength, yPos - halfLength, zPos - halfLength,
+		xPos - halfLength, yPos - halfLength, zPos + halfLength,
+		//right
+		xPos + halfLength, yPos + halfLength, zPos + halfLength,
+		xPos + halfLength, yPos + halfLength, zPos - halfLength,
+		xPos + halfLength, yPos - halfLength, zPos - halfLength,
+		xPos + halfLength, yPos - halfLength, zPos + halfLength,
+		//top
+		xPos - halfLength, yPos + halfLength, zPos + halfLength,
+		xPos - halfLength, yPos + halfLength, zPos - halfLength,
+		xPos + halfLength, yPos + halfLength, zPos - halfLength,
+		xPos + halfLength, yPos + halfLength, zPos + halfLength,
+		//bottom
+		xPos - halfLength, yPos - halfLength, zPos + halfLength,
+		xPos - halfLength, yPos - halfLength, zPos - halfLength,
+		xPos + halfLength, yPos - halfLength, zPos - halfLength,
+		xPos + halfLength, yPos - halfLength, zPos + halfLength,
+	};
+
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	
+	glColor3f(colors[0], colors[1], colors[2]);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(3, GL_FLOAT, 0, Cube);
+	glDrawArrays(GL_QUADS, 0, 24);
+	glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+

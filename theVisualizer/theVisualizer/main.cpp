@@ -5,6 +5,11 @@
 
 #include "Tutorial1.h"
 
+void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
+
+GLfloat rotationX = 0.0f;
+GLfloat rotationY = 0.0f;
+
 int main(void)
 {
 	Tutorial1 tut1;
@@ -20,6 +25,12 @@ int main(void)
 
 	// Create a windowed mode window and its OpenGL context
 	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Hello World", NULL, NULL);
+
+	glfwSetKeyCallback(window, keyCallback);
+	glfwSetInputMode(window, GLFW_STICKY_KEYS, 1);
+
+	int screenWidth, screenHeight;
+	glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
 
 	// See if the window is actually created
 	if (!window)
@@ -37,8 +48,12 @@ int main(void)
 	glMatrixMode(GL_PROJECTION);
 	//Put user at 0 0 0
 	glLoadIdentity();
-	glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1);
+	glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1000);
 	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	GLfloat halfScreenWidth = SCREEN_WIDTH / 2;
+	GLfloat halfScreenHeight = SCREEN_HEIGHT / 2;
 
 	// Do as long as the window isn't closed
 	while (!glfwWindowShouldClose(window)) {
@@ -46,13 +61,46 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//--------------------------------Add draw code here--------------------------------------------
-		tut1.drawPoint(80, SCREEN_HEIGHT / 2, 10, true);
-		tut1.drawPoint(90, SCREEN_HEIGHT / 2, 10, false);
-		tut1.drawPoint(100, SCREEN_HEIGHT / 2, 10, true);
-		tut1.drawPoint(110, SCREEN_HEIGHT / 2, 10, false);
-		tut1.drawPoint(120, SCREEN_HEIGHT / 2, 10, true);
-		tut1.drawPoint(130, SCREEN_HEIGHT / 2, 10, false);
-		tut1.drawPoint(140, SCREEN_HEIGHT / 2, 10, true);
+		glPushMatrix();
+		glTranslatef(halfScreenWidth, halfScreenHeight, -500);
+		glRotatef(rotationX, 1, 0, 0);
+		glRotatef(rotationY, 0, 1, 0);
+		glTranslatef(-halfScreenWidth, -halfScreenHeight, 500);
+
+		float color1[3] = { 1, 0, 0 };
+		float color2[3] = { 0, 0, 1 };
+
+		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -450, 50, color2);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -450, 50, color1);
+		tut1.drawCube(halfScreenWidth + 5, halfScreenHeight - 50, -450, 50, color1);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight, -450, 50, color1);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -450, 50, color2);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -450, 50, color2);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -450, 50, color2);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -450, 50, color1);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -450, 50, color1);
+
+		tut1.drawCube(halfScreenWidth,		halfScreenHeight - 50,	-500, 50, color1);
+		tut1.drawCube(halfScreenWidth - 50,	halfScreenHeight - 50,	-500, 50, color2);
+		tut1.drawCube(halfScreenWidth + 50,	halfScreenHeight - 50,	-500, 50, color2);
+		tut1.drawCube(halfScreenWidth,		halfScreenHeight,		-500, 50, color2);
+		tut1.drawCube(halfScreenWidth - 50,	halfScreenHeight,		-500, 50, color1);
+		tut1.drawCube(halfScreenWidth + 50,	halfScreenHeight,		-500, 50, color1);
+		tut1.drawCube(halfScreenWidth,		halfScreenHeight + 50,	-500, 50, color1);
+		tut1.drawCube(halfScreenWidth - 50,	halfScreenHeight + 50,	-500, 50, color2);
+		tut1.drawCube(halfScreenWidth + 50,	halfScreenHeight + 50,	-500, 50, color2);
+
+		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -550, 50, color2);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -550, 50, color1);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight - 50, -550, 50, color1);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight, -550, 50, color1);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -550, 50, color2);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -550, 50, color2);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -550, 50, color2);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -550, 50, color1);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -550, 50, color1);
+
+		glPopMatrix();
 		//----------------------------------------------------------------------------------------------
 
 		// Swap the windows front and back buffers
@@ -65,4 +113,29 @@ int main(void)
 	glfwTerminate();
 
 	return 0;
+}
+
+void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
+{
+	const GLfloat rotationSpeed = 10;
+
+	// actions are GLFW_PRESS, GLFW_RELEASE or GLFW_REPEAT
+	if (action == GLFW_PRESS || action == GLFW_REPEAT)
+	{
+		switch (key)
+		{
+		case GLFW_KEY_UP:
+			rotationX -= rotationSpeed;
+			break;
+		case GLFW_KEY_DOWN:
+			rotationX += rotationSpeed;
+			break;
+		case GLFW_KEY_RIGHT:
+			rotationY += rotationSpeed;
+			break;
+		case GLFW_KEY_LEFT:
+			rotationY -= rotationSpeed;
+			break;
+		}
+	}
 }
