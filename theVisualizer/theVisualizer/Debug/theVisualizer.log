@@ -1,4 +1,5 @@
-﻿  main.cpp
-  Tutorial1.cpp
+﻿  Tutorial1.cpp
+  main.cpp
+c:\users\marleen\appdata\local\gitkraken\app-7.0.1\individueel project\thevisualizer\thevisualizer\main.cpp(38): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
   Generating Code...
   theVisualizer.vcxproj -> C:\Users\Marleen\AppData\Local\gitkraken\app-7.0.1\Individueel project\theVisualizer\Debug\theVisualizer.exe

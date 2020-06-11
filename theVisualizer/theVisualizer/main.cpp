@@ -5,8 +5,8 @@
 
 #include "Tutorial1.h"
 
-#define SCREEN_WIDTH 300
-#define SCREEN_HEIGHT 300
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
 
 int main(void)
 {
@@ -34,12 +34,21 @@ int main(void)
 	// Make this windows context the current context
 	glfwMakeContextCurrent(window);
 
+	// Vertex will range from 0 to SCREEN_WIDTH and HEIGHT
+	glViewport(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// Add 'camera'
+	glMatrixMode(GL_PROJECTION);
+	//Put user at 0 0 0
+	glLoadIdentity();
+	glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1);
+	glMatrixMode(GL_MODELVIEW);
+
 	// Do as long as the window isn't closed
 	while (!glfwWindowShouldClose(window)) {
 		// Clear the screen at the beginning of every loop
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		tut1.visualizeTriangle();
+		tut1.visualizeSquare();
 
 		// Swap the windows front and back buffers
 		glfwSwapBuffers(window);
