@@ -5,6 +5,8 @@
 
 #include "Tutorial1.h"
 
+#define cubesize 50
+
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
 
 GLfloat rotationX = 0.0f;
@@ -70,35 +72,35 @@ int main(void)
 		float color1[3] = { 1, 0, 0 };
 		float color2[3] = { 0, 0, 1 };
 
-		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -450, 50, color2);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -450, 50, color1);
-		tut1.drawCube(halfScreenWidth + 5, halfScreenHeight - 50, -450, 50, color1);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight, -450, 50, color1);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -450, 50, color2);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -450, 50, color2);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -450, 50, color2);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -450, 50, color1);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -450, 50, color1);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -450, cubesize, color1);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -450, cubesize, color2);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight - 50, -450, cubesize, color1);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -450, cubesize, color2);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight, -450, cubesize, color1);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -450, cubesize, color2);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -450, cubesize, color1);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -450, cubesize, color2);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -450, cubesize, color1);
 
-		tut1.drawCube(halfScreenWidth,		halfScreenHeight - 50,	-500, 50, color1);
-		tut1.drawCube(halfScreenWidth - 50,	halfScreenHeight - 50,	-500, 50, color2);
-		tut1.drawCube(halfScreenWidth + 50,	halfScreenHeight - 50,	-500, 50, color2);
-		tut1.drawCube(halfScreenWidth,		halfScreenHeight,		-500, 50, color2);
-		tut1.drawCube(halfScreenWidth - 50,	halfScreenHeight,		-500, 50, color1);
-		tut1.drawCube(halfScreenWidth + 50,	halfScreenHeight,		-500, 50, color1);
-		tut1.drawCube(halfScreenWidth,		halfScreenHeight + 50,	-500, 50, color1);
-		tut1.drawCube(halfScreenWidth - 50,	halfScreenHeight + 50,	-500, 50, color2);
-		tut1.drawCube(halfScreenWidth + 50,	halfScreenHeight + 50,	-500, 50, color2);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -500, cubesize, color2);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -500, cubesize, color1);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight - 50, -500, cubesize, color2);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -500, cubesize, color1);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight, -500, cubesize, color2);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -500, cubesize, color1);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -500, cubesize, color2);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -500, cubesize, color1);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -500, cubesize, color2);
 
-		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -550, 50, color2);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -550, 50, color1);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight - 50, -550, 50, color1);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight, -550, 50, color1);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -550, 50, color2);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -550, 50, color2);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -550, 50, color2);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -550, 50, color1);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -550, 50, color1);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -550, cubesize, color1);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -550, cubesize, color2);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight - 50, -550, cubesize, color1);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -550, cubesize, color2);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight, -550, cubesize, color1);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -550, cubesize, color2);
+		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -550, cubesize, color1);
+		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -550, cubesize, color2);
+		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -550, cubesize, color1);
 
 		glPopMatrix();
 		//----------------------------------------------------------------------------------------------
@@ -117,7 +119,7 @@ int main(void)
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-	const GLfloat rotationSpeed = 10;
+	GLfloat rotationSpeed = 3;
 
 	// actions are GLFW_PRESS, GLFW_RELEASE or GLFW_REPEAT
 	if (action == GLFW_PRESS || action == GLFW_REPEAT)
