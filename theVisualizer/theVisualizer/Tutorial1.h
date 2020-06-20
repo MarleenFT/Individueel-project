@@ -13,7 +13,7 @@ public:
 	virtual ~Tutorial1();
 
 	void visualizeTriangle();
-	void visualizeSquare();
+	void visualizeSquare(float size, float xPlace, float yPlace, float zPlace, float colors[]);
 
 	void drawPoint(int x, int y, int size, bool smooth);
 
@@ -27,14 +27,7 @@ private:
 		-0.5, -0.5, 0.0,	//x, y, z; Left
 		0.5, -0.5, 0.0		//x, y, z; Right
 	};
-	// A square
-	float verticesSquare[12] =
-	{
-		100, CUBE_HEIGHT, 0,		//x, y, z; Top left
-		CUBE_WIDTH, CUBE_HEIGHT, 0,	//x, y, z; Top right
-		CUBE_WIDTH, 100, 0,			//x, y, z; Bottom left
-		100, 100, 0					//x, y, z; Bottom right
-	};
+
 	// A point
 	float pointVertex[2] = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };			//x, y; Point
 };

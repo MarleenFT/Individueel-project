@@ -18,10 +18,22 @@ void Tutorial1::visualizeTriangle()
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void Tutorial1::visualizeSquare()
+void Tutorial1::visualizeSquare(float size, float xPlace, float yPlace, float zPlace, float colors[])
 {
+	float hl = size / 2;
+
+	float verticesSquare[12] =
+	{
+		xPlace - hl, yPlace + hl, zPlace + hl,	//top left
+		xPlace + hl, yPlace + hl, zPlace + hl,	//top right
+		xPlace + hl, yPlace - hl, zPlace + hl,	//bottom right
+		xPlace - hl, yPlace - hl, zPlace + hl,	//bottom left
+	};
+
+	glColor3f(colors[0], colors[1], colors[2]);
+
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, this->verticesSquare);
+	glVertexPointer(3, GL_FLOAT, 0, verticesSquare);
 	glDrawArrays(GL_QUADS, 0, 4);
 	glDisableClientState(GL_VERTEX_ARRAY);
 }

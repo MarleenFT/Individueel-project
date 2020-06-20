@@ -5,7 +5,7 @@
 
 #include "Tutorial1.h"
 
-#define cubesize 50
+#define squaresize 10
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
 
@@ -56,6 +56,7 @@ int main(void)
 
 	GLfloat halfScreenWidth = SCREEN_WIDTH / 2;
 	GLfloat halfScreenHeight = SCREEN_HEIGHT / 2;
+	float color[3] = {1, 0, 0};
 
 	// Do as long as the window isn't closed
 	while (!glfwWindowShouldClose(window)) {
@@ -63,46 +64,17 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//--------------------------------Add draw code here--------------------------------------------
-		glPushMatrix();
-		glTranslatef(halfScreenWidth, halfScreenHeight, -500);
-		glRotatef(rotationX, 1, 0, 0);
-		glRotatef(rotationY, 0, 1, 0);
-		glTranslatef(-halfScreenWidth, -halfScreenHeight, 500);
+		tut1.visualizeSquare(50, halfScreenWidth - 51, halfScreenHeight + 51, -500, color);
+		tut1.visualizeSquare(50, halfScreenWidth, halfScreenHeight + 51, -500, color);
+		tut1.visualizeSquare(50, halfScreenWidth + 51, halfScreenHeight + 51, -500, color);
 
-		float color1[3] = { 1, 0, 0 };
-		float color2[3] = { 0, 0, 1 };
+		tut1.visualizeSquare(50, halfScreenWidth-51, halfScreenHeight, -500, color);
+		tut1.visualizeSquare(50, halfScreenWidth, halfScreenHeight, -500, color);
+		tut1.visualizeSquare(50, halfScreenWidth+51, halfScreenHeight, -500, color);
 
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -450, cubesize, color1);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -450, cubesize, color2);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight - 50, -450, cubesize, color1);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -450, cubesize, color2);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight, -450, cubesize, color1);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -450, cubesize, color2);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -450, cubesize, color1);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -450, cubesize, color2);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -450, cubesize, color1);
-
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -500, cubesize, color2);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -500, cubesize, color1);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight - 50, -500, cubesize, color2);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -500, cubesize, color1);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight, -500, cubesize, color2);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -500, cubesize, color1);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -500, cubesize, color2);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -500, cubesize, color1);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -500, cubesize, color2);
-
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight - 50, -550, cubesize, color1);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight - 50, -550, cubesize, color2);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight - 50, -550, cubesize, color1);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight, -550, cubesize, color2);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight, -550, cubesize, color1);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight, -550, cubesize, color2);
-		tut1.drawCube(halfScreenWidth - 50, halfScreenHeight + 50, -550, cubesize, color1);
-		tut1.drawCube(halfScreenWidth, halfScreenHeight + 50, -550, cubesize, color2);
-		tut1.drawCube(halfScreenWidth + 50, halfScreenHeight + 50, -550, cubesize, color1);
-
-		glPopMatrix();
+		tut1.visualizeSquare(50, halfScreenWidth - 51, halfScreenHeight - 51, -500, color);
+		tut1.visualizeSquare(50, halfScreenWidth, halfScreenHeight - 51, -500, color);
+		tut1.visualizeSquare(50, halfScreenWidth + 51, halfScreenHeight - 51, -500, color);
 		//----------------------------------------------------------------------------------------------
 
 		// Swap the windows front and back buffers
